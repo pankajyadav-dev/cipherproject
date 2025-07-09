@@ -22,11 +22,7 @@ const LoginScreen = () => {
         try {
             const user = await loginUser(credentials);
             console.log("Login successful", user);
-            if(user && user.type === "ADMIN"){
-                navigator("/admin");
-            } else {
-                navigator("/user");
-            }
+                navigator("/");
         } catch (error) {
             console.error("Login error:", error);
             setError(error.response?.data?.message || "Login failed. Please check your credentials.");

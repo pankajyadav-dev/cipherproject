@@ -1,4 +1,4 @@
-const InputValidationException = require('../exceptions/input-validation-exception');
+const InputValidationException = require('../exceptions/inputValidatorException');
 const Book = require('../models/book');
 
 

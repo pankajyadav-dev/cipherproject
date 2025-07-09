@@ -22,5 +22,11 @@ const signupuser = async (userData) => {
     }
 };
 
-
-export { loginuser, signupuser };
+const logoutuser = async () => {
+    const response = await Librarybackend.get('/user/logout');
+    if (response.status === 200) {
+        console.log("User logged out successfully");
+    }
+    return response;
+}
+export { loginuser, signupuser, logoutuser };

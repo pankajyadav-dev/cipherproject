@@ -1,5 +1,6 @@
 const  userService  = require('../service/user-service');
 const InputValidatorException = require('../exceptions/inputValidatorException');
+const User = require('../models/user');
 const addNewUser = async (req, res) => {
     try {
         const {firstname, lastname, email, password, type} = req.body;
@@ -29,7 +30,23 @@ const loginUser = async (req, res) => {
     }
 };
 
+const logoutUser = async (req, res) => {
+    try {
+        const { token  } = req;
+        let user = await User.findOne({_id: req.userId});
+        user.tokens = user.tokens.filter((usertoken) => {
+            return usertoken.token !== token;
+        });
+        await user.save();
+        console.log('User logged out successfully:', user.email);
+        return res.status(200);
+    } catch (error) {
+        console.error('Error logging out user:', error);
+        return res.status(error instanceof InputValidatorException ? 400 : 500).send({message : error.message});
+    }
+};
 module.exports = {
     addNewUser,
     loginUser,
-};  
+    logoutUser
+};

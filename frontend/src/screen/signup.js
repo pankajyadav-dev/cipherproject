@@ -52,11 +52,7 @@ const SignUpScreen = () => {
         try {
             const user = await signupUser(credentials);
             console.log("User registered successfully", user);
-            if(user && user.type === "ADMIN"){
-                navigator("/admin");
-            } else {
-                navigator("/user");
-            }
+                navigator("/");
         } catch (error) {
             console.error("Signup error:", error);
             setError(error.response?.data?.message || "Signup failed. Please try again.");

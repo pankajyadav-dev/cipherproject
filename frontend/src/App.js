@@ -3,10 +3,10 @@ import './App.css';
 import {createBrowserRouter , RouterProvider} from 'react-router-dom';
 import LoginScreen from './screen/login';
 import SignUpScreen from './screen/signup';
-
+import HomeScreen from './screen/homescreen';
 const router = createBrowserRouter([{
   path: "/",
-  element: <LoginScreen />,
+  element: <HomeScreen />,
 },
 {
   path: "/login",
@@ -14,14 +14,6 @@ const router = createBrowserRouter([{
 },
 {path: "/signup",
   element: <SignUpScreen />,
-},
-{
-  path: "/admin",
-  element: <h1>Admin Dashboard</h1>,
-},
-{
-  path: "/user",
-  element: <h1>User Dashboard</h1>, 
 }
 ]);
 

@@ -1,5 +1,5 @@
 const { verifyToken } = require('../jwt');
-const InputValidationException = require('../exceptions/input-validation-exception');
+const InputValidationException = require('../exceptions/inputValidatorException');
 const User = require('../models/user');
 
 const authMiddleware = async (req, res, next) => {
