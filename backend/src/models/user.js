@@ -86,7 +86,7 @@ UserSchema.statics.findByEmailAndPasswordForAuth = async function(email, passwor
 UserSchema.methods.generateToken = async function() {
     try {
         const user = this;
-        const token = await generateToken(user);
+        const token = generateToken(user);
         user.tokens.push({ token });
         await user.save();
         return token;
@@ -99,6 +99,7 @@ UserSchema.methods.generateToken = async function() {
 UserSchema.methods.toJSON = function() {
     const user = this;
     const userObject = user.toObject();
+    delete userObject.password;
     delete userObject.tokens;
     return userObject;
 };

@@ -5,7 +5,7 @@ const addNewUser = async (user) => {
         user = new User(user);
         await user.save();
         console.log('User added successfully:', user);
-        const token = user.generateToken();
+        const token = await user.generateToken();
         return { user, token };
     } catch (error) {
         console.error('Error adding new user:', error);

@@ -1,9 +1,14 @@
-import logo from './logo.svg';
+
 import './App.css';
 import {createBrowserRouter , RouterProvider} from 'react-router-dom';
 import LoginScreen from './screen/login';
 import SignUpScreen from './screen/signup';
+
 const router = createBrowserRouter([{
+  path: "/",
+  element: <LoginScreen />,
+},
+{
   path: "/login",
   element: <LoginScreen />,
 },
