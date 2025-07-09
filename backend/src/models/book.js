@@ -8,5 +8,10 @@ const bookSchema = new Schema({
         validator(value){
             return this.get('totalQuantity') >= value;
         }
-    }}
+    }},
+    price: { type: Number, required: true, min: 1 },
 });
+
+const Book = model('Book', bookSchema);
+
+module.exports = Book;
