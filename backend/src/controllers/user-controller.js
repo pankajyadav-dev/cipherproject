@@ -32,21 +32,40 @@ const loginUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
     try {
-        const { token  } = req;
-        let user = await User.findOne({_id: req.userId});
+        const { token, user } = req;
+        // Remove the current token from user's tokens array
         user.tokens = user.tokens.filter((usertoken) => {
             return usertoken.token !== token;
         });
         await user.save();
         console.log('User logged out successfully:', user.email);
-        return res.status(200);
+        return res.status(200).send({ message: 'Logout successful' });
     } catch (error) {
         console.error('Error logging out user:', error);
-        return res.status(error instanceof InputValidatorException ? 400 : 500).send({message : error.message});
+        return res.status(error instanceof InputValidationException ? 400 : 500).send({message : error.message});
+    }
+};
+
+const verifyUser = async (req, res) => {
+    try {
+        const { user } = req;
+        return res.status(200).send({ 
+            user: {
+                _id: user._id,
+                firstname: user.firstname,
+                lastname: user.lastname,
+                email: user.email,
+                type: user.type
+            }
+        });
+    } catch (error) {
+        console.error('Error verifying user:', error);
+        return res.status(error instanceof InputValidationException ? 400 : 500).send({message : error.message});
     }
 };
 module.exports = {
     addNewUser,
     loginUser,
-    logoutUser
+    logoutUser,
+    verifyUser
 };

@@ -29,4 +29,10 @@ const logoutuser = async () => {
     }
     return response;
 }
-export { loginuser, signupuser, logoutuser };
+
+const verifyuser = async () => {
+    const response = await Librarybackend.get('/user/verify');
+    return response.data;
+}
+
+export { loginuser, signupuser, logoutuser, verifyuser };
