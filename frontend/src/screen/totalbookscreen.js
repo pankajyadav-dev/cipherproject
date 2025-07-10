@@ -1,5 +1,6 @@
 import { listBooks, requestBook, requestReturn, getUserTransactions } from '../api/user-api';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getLocalStorageUser } from '../utils/Authutil';
 
 const TotalBookScreen = () => {
@@ -122,35 +123,100 @@ const TotalBookScreen = () => {
 
     if (loading) {
         return (
-            <section className="app-section">
-                <h1>Total Books</h1>
-                <p>Loading books...</p>
-            </section>
+            <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+                <div className="professional-container">
+                    <div className="navigation-bar">
+                        <Link to="/" className="nav-brand">
+                            <i className="fas fa-book"></i>
+                            Library
+                        </Link>
+                        <div className="nav-actions">
+                            <Link to="/" className="ui button basic">
+                                <i className="fas fa-arrow-left"></i>
+                                Back to Dashboard
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="app-section">
+                        <div className="loading-container">
+                            <div className="loading-spinner"></div>
+                            <div className="loading-text">Loading books...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         );
     }
 
     if (error) {
         return (
-            <section className="app-section">
-                <h1>Total Books</h1>
-                <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
-                    {error}
+            <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+                <div className="professional-container">
+                    <div className="navigation-bar">
+                        <Link to="/" className="nav-brand">
+                            <i className="fas fa-book"></i>
+                            Library
+                        </Link>
+                        <div className="nav-actions">
+                            <Link to="/" className="ui button basic">
+                                <i className="fas fa-arrow-left"></i>
+                                Back to Dashboard
+                            </Link>
+                        </div>
+                    </div>
+                    <div className="app-section">
+                        <div className="professional-header">
+                            <h1>
+                                <i className="fas fa-exclamation-triangle"></i>
+                                Error Loading Books
+                            </h1>
+                        </div>
+                        <div className="error-message">
+                            <i className="fas fa-exclamation-triangle"></i>
+                            {error}
+                        </div>
+                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                            <button className="ui primary button" onClick={handleRefresh} disabled={loading}>
+                                <i className="fas fa-redo"></i>
+                                {loading ? 'Retrying...' : 'Try Again'}
+                            </button>
+                        </div>
+                    </div>
                 </div>
-                <button className="ui button" onClick={handleRefresh} disabled={loading}>
-                    {loading ? 'Retrying...' : 'Try Again'}
-                </button>
-            </section>
+            </div>
         );
     }
 
     return (
-        <section className="app-section">
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-                <h1>Total Books</h1>
-                <button className="ui button" onClick={handleRefresh} disabled={loading}>
-                    {loading ? 'Refreshing...' : 'Refresh'}
-                </button>
-            </div>
+        <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+            <div className="professional-container">
+                {/* Navigation Bar */}
+                <div className="navigation-bar">
+                    <Link to="/" className="nav-brand">
+                        <i className="fas fa-book"></i>
+                        Library
+                    </Link>
+                    <div className="nav-actions">
+                        <button className="ui button primary" onClick={handleRefresh} disabled={loading}>
+                            <i className="fas fa-sync-alt"></i>
+                            {loading ? 'Refreshing...' : 'Refresh'}
+                        </button>
+                        <Link to="/" className="ui button basic">
+                            <i className="fas fa-arrow-left"></i>
+                            Back to Dashboard
+                        </Link>
+                    </div>
+                </div>
+                
+                <div className="app-section slide-in-up">
+                    {/* Header */}
+                    <div className="professional-header">
+                        <h1>
+                            <i className="fas fa-library"></i>
+                            Library Collection
+                        </h1>
+                        <p className="subtitle">Browse and manage all books in our library</p>
+                    </div>
             <p><strong>Total number of books: {books.length}</strong></p>
             {books.length === 0 ? (
                 <div style={{ textAlign: 'center', padding: '20px' }}>
@@ -476,7 +542,9 @@ const TotalBookScreen = () => {
                     </div>
                 </div>
             )}
-        </section>
+                </div>
+            </div>
+        </div>
     );
 }
 

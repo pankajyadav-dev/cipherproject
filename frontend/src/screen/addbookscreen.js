@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { addBook } from '../api/user-api';
 
 const AddBookScreen = () => {
@@ -69,39 +70,246 @@ const AddBookScreen = () => {
     };
 
     return (
-        <section className="app-section">
-            <h1>Add Book</h1>
-            {error && <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>{error}</div>}
-            <form className="ui form" onSubmit={handleAddBook}>
-                <div className="field">
-                    <label>ISBN</label>
-                    <input type="text" name="isbn" placeholder="ISBN" value={bookDetails.isbn} onChange={handleInputChange} required />
+        <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+            <div className="professional-container">
+                {/* Navigation Bar */}
+                <div className="navigation-bar">
+                    <Link to="/" className="nav-brand">
+                        <i className="fas fa-book"></i>
+                        Library
+                    </Link>
+                    <div className="nav-actions">
+                        <Link to="/" className="ui button basic">
+                            <i className="fas fa-arrow-left"></i>
+                            Back to Dashboard
+                        </Link>
+                    </div>
                 </div>
-                <div className="field">
-                    <label>Title</label>
-                    <input type="text" name="title" placeholder="Title" value={bookDetails.title} onChange={handleInputChange} required />
+                
+                <div className="app-section slide-in-up">
+                    {/* Header */}
+                    <div className="professional-header">
+                        <h1>
+                            <i className="fas fa-plus-circle"></i>
+                            Add New Book
+                        </h1>
+                        <p className="subtitle">Expand your library collection with detailed book information</p>
+                    </div>
+
+                    {/* Error Message */}
+                    {error && (
+                        <div className="error-message">
+                            <i className="fas fa-exclamation-triangle"></i>
+                            {error}
+                        </div>
+                    )}
+
+                    {/* Book Form */}
+                    <div style={{
+                        background: 'rgba(30, 41, 59, 0.8)',
+                        borderRadius: '15px',
+                        padding: '40px',
+                        boxShadow: '0 15px 35px rgba(0, 0, 0, 0.3)',
+                        marginBottom: '30px',
+                        border: '1px solid rgba(148, 163, 184, 0.2)',
+                        backdropFilter: 'blur(15px)'
+                    }}>
+                        <h3 style={{ 
+                            color: '#f8fafc', 
+                            marginBottom: '30px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            textShadow: '0 0 10px rgba(99, 102, 241, 0.3)'
+                        }}>
+                            <i className="fas fa-book-open"></i>
+                            Book Information
+                        </h3>
+                        
+                        <form className="ui form" onSubmit={handleAddBook}>
+                            <div className="two fields">
+                                <div className="field">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <i className="fas fa-barcode"></i>
+                                        ISBN Number
+                                    </label>
+                                    <div className="ui left icon input">
+                                        <i className="barcode icon"></i>
+                                        <input 
+                                            type="text" 
+                                            name="isbn" 
+                                            placeholder="Enter ISBN (e.g., 978-3-16-148410-0)" 
+                                            value={bookDetails.isbn} 
+                                            onChange={handleInputChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <i className="fas fa-tag"></i>
+                                        Book Title
+                                    </label>
+                                    <div className="ui left icon input">
+                                        <i className="book icon"></i>
+                                        <input 
+                                            type="text" 
+                                            name="title" 
+                                            placeholder="Enter book title" 
+                                            value={bookDetails.title} 
+                                            onChange={handleInputChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="field">
+                                <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                    <i className="fas fa-user-edit"></i>
+                                    Author Name
+                                </label>
+                                <div className="ui left icon input">
+                                    <i className="user icon"></i>
+                                    <input 
+                                        type="text" 
+                                        name="author" 
+                                        placeholder="Enter author name" 
+                                        value={bookDetails.author} 
+                                        onChange={handleInputChange} 
+                                        required 
+                                    />
+                                </div>
+                            </div>
+                            
+                            <div className="three fields">
+                                <div className="field">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <i className="fas fa-boxes"></i>
+                                        Total Quantity
+                                    </label>
+                                    <div className="ui left icon input">
+                                        <i className="cubes icon"></i>
+                                        <input 
+                                            type="number" 
+                                            name="totalQuantity" 
+                                            min="1" 
+                                            step="1" 
+                                            placeholder="Total copies" 
+                                            value={bookDetails.totalQuantity} 
+                                            onChange={handleInputChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <i className="fas fa-handshake"></i>
+                                        Issued Quantity
+                                    </label>
+                                    <div className="ui left icon input">
+                                        <i className="handshake icon"></i>
+                                        <input 
+                                            type="number" 
+                                            name="issuedQuantity" 
+                                            min="0" 
+                                            step="1" 
+                                            max={bookDetails.totalQuantity} 
+                                            placeholder="Currently issued" 
+                                            value={bookDetails.issuedQuantity} 
+                                            onChange={handleInputChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                                <div className="field">
+                                    <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                        <i className="fas fa-dollar-sign"></i>
+                                        Price (USD)
+                                    </label>
+                                    <div className="ui left icon input">
+                                        <i className="dollar sign icon"></i>
+                                        <input 
+                                            type="number" 
+                                            name="price" 
+                                            min="0.01" 
+                                            step="0.01" 
+                                            placeholder="Book price" 
+                                            value={bookDetails.price} 
+                                            onChange={handleInputChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {/* Action Buttons */}
+                            <div style={{ 
+                                marginTop: '30px', 
+                                display: 'flex', 
+                                gap: '15px', 
+                                justifyContent: 'center',
+                                flexWrap: 'wrap'
+                            }}>
+                                <button 
+                                    className="ui primary button" 
+                                    type="submit" 
+                                    disabled={loading}
+                                    style={{ 
+                                        padding: '15px 30px',
+                                        fontSize: '1.1rem',
+                                        fontWeight: '600'
+                                    }}
+                                >
+                                    {loading ? (
+                                        <>
+                                            <i className="spinner loading icon"></i>
+                                            Adding Book...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <i className="fas fa-plus"></i>
+                                            Add Book to Library
+                                        </>
+                                    )}
+                                </button>
+                                <Link to="/" className="ui button secondary">
+                                    <i className="fas fa-times"></i>
+                                    Cancel
+                                </Link>
+                            </div>
+                        </form>
+                    </div>
+
+                    {/* Help Section */}
+                    <div style={{
+                        background: 'rgba(99, 102, 241, 0.1)',
+                        borderRadius: '15px',
+                        padding: '25px',
+                        border: '1px solid rgba(99, 102, 241, 0.2)',
+                        backdropFilter: 'blur(10px)'
+                    }}>
+                        <h4 style={{ 
+                            color: '#f8fafc', 
+                            marginBottom: '15px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            gap: '10px',
+                            textShadow: '0 0 5px rgba(99, 102, 241, 0.3)'
+                        }}>
+                            <i className="fas fa-info-circle"></i>
+                            Quick Tips
+                        </h4>
+                        <ul style={{ color: '#94a3b8', lineHeight: '1.6', marginLeft: '20px' }}>
+                            <li>ISBN should be in standard format (e.g., 978-3-16-148410-0)</li>
+                            <li>Issued quantity cannot exceed total quantity</li>
+                            <li>All fields are required for successful book addition</li>
+                            <li>Price should be in USD format with up to 2 decimal places</li>
+                        </ul>
+                    </div>
                 </div>
-                <div className="field">
-                    <label>Author</label>
-                    <input type="text" name="author" placeholder="Author" value={bookDetails.author} onChange={handleInputChange} required />
-                </div>
-                <div className="field">
-                    <label>Total Quantity</label>
-                    <input type="number" name="totalQuantity" min="0" step="1" value={bookDetails.totalQuantity} onChange={handleInputChange} required />
-                </div>
-                <div className="field">
-                    <label>Issued Quantity</label>
-                    <input type="number" name="issuedQuantity" min="0" step="1" max={bookDetails.totalQuantity} value={bookDetails.issuedQuantity} onChange={handleInputChange} required />
-                </div>
-                <div className="field">
-                    <label>Price</label>
-                    <input type="number" name="price" min="1" step="0.01" value={bookDetails.price} onChange={handleInputChange} required />
-                </div>
-                <button className="ui button" type="submit" disabled={loading}>
-                    {loading ? 'Adding Book...' : 'Add Book'}
-                </button>
-            </form>
-        </section>
+            </div>
+        </div>
     );
 };
 

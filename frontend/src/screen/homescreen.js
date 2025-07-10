@@ -35,19 +35,42 @@ const HomeScreen = ({usertype}) => {
         }
     };
     return (
-        <section className="ui container">
-            {UserType && (
-                <div style={{ textAlign: 'right', padding: '10px' }}>
-                    <button 
-                        className="ui secondary button" 
-                        onClick={handleLogout}
-                    >
-                        Logout
-                    </button>
+        <div style={{ minHeight: '100vh', background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)' }}>
+            <div className="professional-container">
+                {/* Navigation Bar */}
+                {UserType && (
+                    <div className="navigation-bar">
+                        <div className="nav-brand">
+                            <i className="fas fa-book"></i>
+                            Library
+                        </div>
+                        <div className="nav-actions">
+                            <div className="user-info">
+                                <i className={UserType === 'ADMIN' ? 'fas fa-crown' : 'fas fa-user'}></i>
+                                {UserType === 'ADMIN' ? 'Librarian' : 'Student'}
+                            </div>
+                            <button 
+                                className="ui red button" 
+                                onClick={handleLogout}
+                                style={{ 
+                                    borderRadius: '25px',
+                                    padding: '10px 20px',
+                                    fontSize: '0.9rem'
+                                }}
+                            >
+                                <i className="fas fa-sign-out-alt"></i>
+                                Logout
+                            </button>
+                        </div>
+                    </div>
+                )}
+                
+                {/* Main Content */}
+                <div className="app-section" style={{ minHeight: 'auto', padding: '40px' }}>
+                    {getHomeScreen()}
                 </div>
-            )}
-            {getHomeScreen()}
-        </section>
+            </div>
+        </div>
     );
 
 

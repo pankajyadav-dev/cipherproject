@@ -50,18 +50,20 @@ const LoginScreen = () => {
             display: 'flex', 
             alignItems: 'center', 
             justifyContent: 'center',
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
             padding: '20px'
         }}>
             <div style={{
-                background: 'rgba(255, 255, 255, 0.95)',
-                backdropFilter: 'blur(10px)',
+                background: 'rgba(30, 41, 59, 0.95)',
+                backdropFilter: 'blur(20px)',
                 borderRadius: '20px',
                 padding: '50px',
-                boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)',
+                boxShadow: '0 25px 50px rgba(0, 0, 0, 0.5)',
                 width: '100%',
                 maxWidth: '450px',
-                animation: 'slideInUp 0.6s ease-out'
+                animation: 'slideInUp 0.6s ease-out',
+                border: '1px solid rgba(148, 163, 184, 0.2)',
+                color: '#f8fafc'
             }}>
                 {/* Header Section */}
                 <div style={{ textAlign: 'center', marginBottom: '40px' }}>
@@ -74,17 +76,18 @@ const LoginScreen = () => {
                         fontWeight: '700',
                         marginBottom: '10px'
                     }}>
-                        📚 Library Pro
+                        📚 Library
                     </div>
                     <h2 style={{ 
                         margin: '0 0 10px 0', 
-                        color: '#2c3e50',
-                        fontWeight: '600'
+                        color: '#f8fafc',
+                        fontWeight: '600',
+                        textShadow: '0 0 10px rgba(99, 102, 241, 0.3)'
                     }}>
                         Welcome Back!
                     </h2>
                     <p style={{ 
-                        color: '#7f8c8d', 
+                        color: '#e2e8f0', 
                         margin: '0 0 20px 0',
                         fontSize: '1.1rem'
                     }}>
@@ -168,9 +171,9 @@ const LoginScreen = () => {
                     textAlign: 'center', 
                     marginTop: '30px',
                     padding: '20px 0',
-                    borderTop: '1px solid #e1e8ed'
+                    borderTop: '1px solid rgba(148, 163, 184, 0.2)'
                 }}>
-                    <p style={{ color: '#7f8c8d', margin: '0 0 15px 0' }}>
+                    <p style={{ color: '#e2e8f0', margin: '0 0 15px 0' }}>
                         Don't have an account?
                     </p>
                     <Link 
