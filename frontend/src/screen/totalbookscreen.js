@@ -310,9 +310,9 @@ const TotalBookScreen = () => {
                                             )}
                                         </td>
                                         
-                                        {/* Availability Column */}
+                                        
                                         <td className="center aligned" style={{ 
-                                            width: '25%',
+                                            width: '35%',
                                             padding: '15px 10px',
                                             verticalAlign: 'middle'
                                         }}>
@@ -375,7 +375,7 @@ const TotalBookScreen = () => {
                                                 )}
                                             </div>
                                             <div style={{ fontSize: '14px', fontWeight: 'bold', color: '#2185d0' }}>
-                                                {book.price ? `$${Number(book.price).toFixed(2)}` : 'Price Not Set'}
+                                                {book.price ? `Rs. ${Number(book.price).toFixed(2)}` : 'Price Not Set'}
                                             </div>
                                         </td>
                                         

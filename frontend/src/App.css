@@ -336,7 +336,7 @@ body {
 }
 
 .ui.card .description {
-  color: var(--text-secondary) !important;
+  color: white !important;
   line-height: 1.6 !important;
   margin-bottom: 20px !important;
 }
@@ -344,7 +344,7 @@ body {
 .ui.card .description p {
   margin-bottom: 15px !important;
   font-size: 0.95rem !important;
-  color: var(--text-secondary) !important;
+  color: black !important;
 }
 
 /* Feature Cards - Dark Theme */
@@ -359,6 +359,7 @@ body {
   position: relative;
   overflow: hidden;
   backdrop-filter: blur(15px);
+  color: black;
 }
 
 .feature-card::before {
@@ -1279,19 +1280,12 @@ a:hover {
   100% { transform: rotate(360deg); }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .app-section {
-    margin: 10px;
-    padding: 20px;
+@media (prefers-color-scheme: dark) {
+  .ui.card {
+    background: rgba(44, 62, 80, 0.98) !important;
+    color: var(--dark-color) !important;
   }
-  
-  .professional-header h1 {
-    font-size: 2rem;
-  }
-  
-  .ui.three.cards > .card {
-    width: 100% !important;
-    margin-bottom: 20px !important;
-  }
+}
+.description p {
+  color: black !important;
 }

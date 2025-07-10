@@ -31,37 +31,7 @@ const LibrarianHomeScreen = () => {
                 <p className="subtitle">Manage your library with ease and efficiency</p>
             </div>
 
-            {/* Statistics Cards */}
-            <div className="stats-grid">
-                <div className="stats-card slide-in-left">
-                    <div className="stats-icon">
-                        <i className="fas fa-book"></i>
-                    </div>
-                    <div className="stats-number">{stats.totalBooks}</div>
-                    <div className="stats-label">Total Books</div>
-                </div>
-                <div className="stats-card slide-in-up" style={{ animationDelay: '0.1s' }}>
-                    <div className="stats-icon">
-                        <i className="fas fa-users"></i>
-                    </div>
-                    <div className="stats-number">{stats.totalStudents}</div>
-                    <div className="stats-label">Active Students</div>
-                </div>
-                <div className="stats-card slide-in-up" style={{ animationDelay: '0.2s' }}>
-                    <div className="stats-icon">
-                        <i className="fas fa-clock"></i>
-                    </div>
-                    <div className="stats-number">{stats.pendingRequests}</div>
-                    <div className="stats-label">Pending Requests</div>
-                </div>
-                <div className="stats-card slide-in-right" style={{ animationDelay: '0.3s' }}>
-                    <div className="stats-icon">
-                        <i className="fas fa-handshake"></i>
-                    </div>
-                    <div className="stats-number">{stats.issuedBooks}</div>
-                    <div className="stats-label">Issued Books</div>
-                </div>
-            </div>
+            
 
             {/* Action Cards */}
             <div className="ui three cards">
@@ -114,41 +84,7 @@ const LibrarianHomeScreen = () => {
                 </div>
             </div>
 
-            {/* Quick Actions */}
-            <div style={{
-                marginTop: '40px',
-                padding: '30px',
-                background: 'rgba(255, 255, 255, 0.8)',
-                borderRadius: '15px',
-                textAlign: 'center',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)'
-            }}>
-                <h3 style={{ 
-                    color: '#2c3e50', 
-                    marginBottom: '20px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '10px'
-                }}>
-                    <i className="fas fa-rocket"></i>
-                    Quick Actions
-                </h3>
-                <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                    <Link to="/add-book" className="ui button orange">
-                        <i className="fas fa-plus"></i>
-                        Quick Add Book
-                    </Link>
-                    <Link to="/admin-panel" className="ui button green">
-                        <i className="fas fa-bell"></i>
-                        View Notifications
-                    </Link>
-                    <Link to="/all-books" className="ui button blue">
-                        <i className="fas fa-search"></i>
-                        Search Books
-                    </Link>
-                </div>
-            </div>
+           
         </div>
     );
 };

@@ -54,7 +54,6 @@ const verifyuser = async () => {
     return response.data;
 }
 
-// Student functions
 const requestBook = async (bookId, quantity = 1) => {
     try {
         const response = await Librarybackend.post(`/book/request/${bookId}`, { quantity });
@@ -85,7 +84,6 @@ const getUserTransactions = async () => {
     }
 };
 
-// Librarian functions
 const getPendingRequests = async (type = 'all') => {
     try {
         const response = await Librarybackend.get(`/book/pending-requests?type=${type}`);

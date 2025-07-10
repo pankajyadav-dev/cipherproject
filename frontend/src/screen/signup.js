@@ -280,19 +280,7 @@ const SignUpScreen = () => {
                 </button>
             </form>
 
-            {/* Footer Section */}
-            <div style={{ 
-                textAlign: 'center', 
-                marginTop: '30px',
-                padding: '20px 0',
-                borderTop: '1px solid #e1e8ed',
-                fontSize: '0.9rem',
-                color: '#94a3b8'
-            }}>
-                <p style={{ margin: '0' }}>
-                    By creating an account, you agree to our Terms of Service and Privacy Policy
-                </p>
-            </div>
+            
         </div>
     </div>
   )};

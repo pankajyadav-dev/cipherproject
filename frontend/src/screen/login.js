@@ -76,7 +76,7 @@ const LoginScreen = () => {
                         fontWeight: '700',
                         marginBottom: '10px'
                     }}>
-                        📚 Library
+                         Library
                     </div>
                     <h2 style={{ 
                         margin: '0 0 10px 0', 

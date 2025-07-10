@@ -225,7 +225,7 @@ const AddBookScreen = () => {
                                 <div className="field">
                                     <label style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                                         <i className="fas fa-dollar-sign"></i>
-                                        Price (USD)
+                                        Price
                                     </label>
                                     <div className="ui left icon input">
                                         <i className="dollar sign icon"></i>
@@ -281,32 +281,6 @@ const AddBookScreen = () => {
                         </form>
                     </div>
 
-                    {/* Help Section */}
-                    <div style={{
-                        background: 'rgba(99, 102, 241, 0.1)',
-                        borderRadius: '15px',
-                        padding: '25px',
-                        border: '1px solid rgba(99, 102, 241, 0.2)',
-                        backdropFilter: 'blur(10px)'
-                    }}>
-                        <h4 style={{ 
-                            color: '#f8fafc', 
-                            marginBottom: '15px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '10px',
-                            textShadow: '0 0 5px rgba(99, 102, 241, 0.3)'
-                        }}>
-                            <i className="fas fa-info-circle"></i>
-                            Quick Tips
-                        </h4>
-                        <ul style={{ color: '#94a3b8', lineHeight: '1.6', marginLeft: '20px' }}>
-                            <li>ISBN should be in standard format (e.g., 978-3-16-148410-0)</li>
-                            <li>Issued quantity cannot exceed total quantity</li>
-                            <li>All fields are required for successful book addition</li>
-                            <li>Price should be in USD format with up to 2 decimal places</li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
