@@ -23,7 +23,6 @@ const getLocalStorageUser = () => {
         }
         return null;
     } catch (error) {
-        console.error('Error parsing user from localStorage:', error);
         // If there's an error parsing, clear the corrupted data
         localStorage.removeItem('user');
         return null;
@@ -57,8 +56,6 @@ const logoutUserFunction = async () => {
         localStorage.removeItem('user');
         return response;
     } catch (error) {
-        // Even if backend logout fails, clear the frontend to prevent access
-        console.error('Backend logout failed, clearing frontend anyway:', error);
         localStorage.removeItem('token');
         localStorage.removeItem('user');
         throw error;

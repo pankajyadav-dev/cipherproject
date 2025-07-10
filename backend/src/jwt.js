@@ -15,7 +15,6 @@ const verifyToken = (token) => {
         const decoded = jwt.verify(token, JWT_SECRET);
         return {status: true , decoded};
     } catch (error) {
-        console.error('Error verifying token:', error);
         return {status: false , error: error.message};
     }
 }

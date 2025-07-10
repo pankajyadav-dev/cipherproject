@@ -25,7 +25,6 @@ const authMiddleware = async (req, res, next) => {
             return res.status(401).send({ message: 'Invalid token' });
         }
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({ message: error.message });
     }
 };

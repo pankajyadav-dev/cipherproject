@@ -1,5 +1,5 @@
 import { listBooks, requestBook, requestReturn, getUserTransactions } from '../api/user-api';
-import { useEffect, useState } from 'react';
+import { useEffect, useState , useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { getLocalStorageUser } from '../utils/Authutil';
 
@@ -18,31 +18,30 @@ const TotalBookScreen = () => {
             const bookList = await listBooks();
             setBooks(bookList);
         } catch (error) {
-            console.error('Error fetching books:', error);
             setError('Failed to load books. Please try again.');
         } finally {
             setLoading(false);
         }
     };
 
-    const fetchUserTransactions = async () => {
+
+    const fetchUserTransactions = useCallback(async () => {
         if (userType === 'USER') {
             try {
                 const transactions = await getUserTransactions();
                 setUserTransactions(transactions || []);
             } catch (error) {
-                console.error('Error fetching user transactions:', error);
                 setUserTransactions([]); // Set empty array on error
             }
         } else {
-            setUserTransactions([]); // Clear transactions for non-users
+            setUserTransactions([]);
         }
-    };
+    }, [userType]); // ✅ include userType since it's used inside the function
 
     useEffect(() => {
         fetchBooks();
         fetchUserTransactions();
-    }, [userType]);
+    }, [fetchUserTransactions]); // ✅ use fetchUserTransactions here now
 
     const handleRefresh = () => {
         fetchBooks();
@@ -58,7 +57,6 @@ const TotalBookScreen = () => {
             alert(result.message || `Book request submitted for "${title}"`);
             await fetchUserTransactions(); // Refresh user transactions
         } catch (error) {
-            console.error('Error requesting book:', error);
             const errorMessage = error.response?.data?.message || 'Failed to request book. Please try again.';
             alert(errorMessage);
         } finally {
@@ -75,7 +73,6 @@ const TotalBookScreen = () => {
             alert(result.message || `Return request submitted for "${title}"`);
             await fetchUserTransactions(); // Refresh user transactions
         } catch (error) {
-            console.error('Error requesting return:', error);
             const errorMessage = error.response?.data?.message || 'Failed to request return. Please try again.';
             alert(errorMessage);
         } finally {
@@ -116,7 +113,6 @@ const TotalBookScreen = () => {
             
             return 'AVAILABLE';
         } catch (error) {
-            console.error('Error in getBookStatusForStudent:', error);
             return 'AVAILABLE';
         }
     };

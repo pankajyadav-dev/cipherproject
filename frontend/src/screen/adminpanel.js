@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback} from 'react';
 import { Link } from 'react-router-dom';
 import { getPendingRequests, approveBookRequest, verifyReturn } from '../api/user-api';
 
@@ -7,35 +7,34 @@ const AdminPanel = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState('');
     const [actionLoading, setActionLoading] = useState({});
-    const [filter, setFilter] = useState('all'); // 'all', 'issue', 'return'
+    const [filter, setFilter] = useState('all'); 
 
-    const fetchPendingRequests = async () => {
-        try {
-            setLoading(true);
-            setError('');
-            const requests = await getPendingRequests(filter);
-            setPendingRequests(requests);
-        } catch (error) {
-            console.error('Error fetching pending requests:', error);
-            setError('Failed to load pending requests. Please try again.');
-        } finally {
-            setLoading(false);
-        }
-    };
+    const fetchPendingRequests = useCallback(async () => {
+    try {
+        setLoading(true);
+        setError('');
+        const requests = await getPendingRequests(filter);
+        setPendingRequests(requests);
+    } catch (error) {
+        setError('Failed to load pending requests. Please try again.');
+    } finally {
+        setLoading(false);
+    }
+}, [filter]); 
+
 
     useEffect(() => {
-        fetchPendingRequests();
-    }, [filter]);
+    fetchPendingRequests();
+}, [fetchPendingRequests]); // ✅ no ESLint warning now
+
 
     const handleApproveRequest = async (transactionId, action, comments = '') => {
         try {
             setActionLoading(prev => ({ ...prev, [transactionId]: true }));
-            const result = await approveBookRequest(transactionId, action, comments);
+            await approveBookRequest(transactionId, action, comments);
             
-            alert(result.message);
             await fetchPendingRequests(); // Refresh the list
         } catch (error) {
-            console.error('Error processing request:', error);
             const errorMessage = error.response?.data?.message || 'Failed to process request. Please try again.';
             alert(errorMessage);
         } finally {
@@ -46,12 +45,9 @@ const AdminPanel = () => {
     const handleVerifyReturn = async (transactionId, comments = '') => {
         try {
             setActionLoading(prev => ({ ...prev, [transactionId]: true }));
-            const result = await verifyReturn(transactionId, comments);
-            
-            alert(result.message);
+            await verifyReturn(transactionId, comments);
             await fetchPendingRequests(); // Refresh the list
         } catch (error) {
-            console.error('Error verifying return:', error);
             const errorMessage = error.response?.data?.message || 'Failed to verify return. Please try again.';
             alert(errorMessage);
         } finally {

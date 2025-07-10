@@ -20,7 +20,6 @@ const HomeScreen = ({usertype}) => {
             await logoutUser();
             navigate("/login");
         } catch (error) {
-            console.error('Logout failed:', error);
             navigate("/login");
         }
     };

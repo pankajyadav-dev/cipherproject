@@ -41,7 +41,6 @@ const SignUpScreen = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); 
         setError("");
-        console.log("Sign Up submitted", credentials);
         
         if(!validateCredentials()) {
             return;
@@ -49,11 +48,9 @@ const SignUpScreen = () => {
         
         setLoading(true);
         try {
-            const user = await signupUser(credentials);
-            console.log("User registered successfully", user);
+         await signupUser(credentials);
                 navigator("/");
         } catch (error) {
-            console.error("Signup error:", error);
             setError(error.response?.data?.message || "Signup failed. Please try again.");
         } finally {
             setLoading(false);

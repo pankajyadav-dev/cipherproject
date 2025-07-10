@@ -6,7 +6,6 @@ const loginuser = async (email, password) => {
         const response = await Librarybackend.post('/user/login', { email, password });
         return response.data;
     } catch (error) {
-        console.error("Login failed:", error);
         throw error;
     }
 };
@@ -17,7 +16,6 @@ const signupuser = async (userData) => {
         const response = await Librarybackend.post('/user/signup', userData);
         return response.data;
     } catch (error) {
-        console.error("Signup failed:", error);
         throw error;
     }
 };
@@ -27,7 +25,6 @@ const addBook = async (bookData) => {
         const response = await Librarybackend.post('/book/add', bookData);
         return response.data;
     } catch (error) {
-        console.error("Add book failed:", error);
         throw error;
     }
 };
@@ -37,14 +34,12 @@ const listBooks = async () => {
         const response = await Librarybackend.get('/book/all');
         return response.data;
     } catch (error) {
-        console.error("List books failed:", error);
         throw error;
     }
 };
 const logoutuser = async () => {
     const response = await Librarybackend.get('/user/logout');
     if (response.status === 200) {
-        console.log("User logged out successfully");
     }
     return response;
 }
@@ -59,7 +54,6 @@ const requestBook = async (bookId, quantity = 1) => {
         const response = await Librarybackend.post(`/book/request/${bookId}`, { quantity });
         return response.data;
     } catch (error) {
-        console.error("Request book failed:", error);
         throw error;
     }
 };
@@ -69,7 +63,6 @@ const requestReturn = async (bookId) => {
         const response = await Librarybackend.post(`/book/return-request/${bookId}`);
         return response.data;
     } catch (error) {
-        console.error("Request return failed:", error);
         throw error;
     }
 };
@@ -79,7 +72,6 @@ const getUserTransactions = async () => {
         const response = await Librarybackend.get('/book/my-transactions');
         return response.data;
     } catch (error) {
-        console.error("Get user transactions failed:", error);
         throw error;
     }
 };
@@ -89,7 +81,6 @@ const getPendingRequests = async (type = 'all') => {
         const response = await Librarybackend.get(`/book/pending-requests?type=${type}`);
         return response.data;
     } catch (error) {
-        console.error("Get pending requests failed:", error);
         throw error;
     }
 };
@@ -99,7 +90,6 @@ const approveBookRequest = async (transactionId, action, comments = '') => {
         const response = await Librarybackend.put(`/book/approve/${transactionId}`, { action, comments });
         return response.data;
     } catch (error) {
-        console.error("Approve book request failed:", error);
         throw error;
     }
 };
@@ -109,7 +99,6 @@ const verifyReturn = async (transactionId, comments = '') => {
         const response = await Librarybackend.put(`/book/verify-return/${transactionId}`, { comments });
         return response.data;
     } catch (error) {
-        console.error("Verify return failed:", error);
         throw error;
     }
 };

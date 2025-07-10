@@ -19,7 +19,6 @@ const addBook = async (req, res, next) => {
         await book.save();
         return res.status(201).send(book);
     } catch (error) {
-        console.log(error);
         
         // Handle MongoDB validation errors
         if (error.name === 'ValidationError') {
@@ -41,7 +40,6 @@ const getAllBooks = async (req, res, next) => {
         const bookList = await Book.find();
         return res.status(200).send(bookList);
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
@@ -52,8 +50,6 @@ const requestBook = async (req, res, next) => {
         const { bookId } = req.params;
         const { quantity = 1 } = req.body;
         const studentId = req.user._id;
-        
-        console.log('Book request received:', { bookId, quantity, studentId });
         
         // Validate ObjectId format
         if (!mongoose.Types.ObjectId.isValid(bookId)) {
@@ -99,19 +95,15 @@ const requestBook = async (req, res, next) => {
             status: 'PENDING'
         };
         
-        console.log('Creating transaction with data:', transactionData);
-        
         const transaction = new BookTransaction(transactionData);
         
         await transaction.save();
-        console.log('Transaction saved successfully:', transaction._id);
         
         return res.status(201).send({
             message: `Book request submitted successfully. Waiting for librarian approval.`,
             transaction
         });
     } catch (error) {
-        console.log('Error in requestBook:', error);
         
         // Handle MongoDB validation errors
         if (error.name === 'ValidationError') {
@@ -191,7 +183,6 @@ const approveBookRequest = async (req, res, next) => {
         
         return res.status(400).send({message: 'Invalid action. Use "approve" or "reject"'});
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
@@ -242,7 +233,6 @@ const requestReturn = async (req, res, next) => {
             transaction: returnTransaction
         });
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
@@ -302,7 +292,6 @@ const verifyReturn = async (req, res, next) => {
             transaction: returnTransaction
         });
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
@@ -310,9 +299,7 @@ const verifyReturn = async (req, res, next) => {
 // Get pending requests for librarian
 const getPendingRequests = async (req, res, next) => {
     try {
-        const { type = 'all' } = req.query; // 'issue', 'return', or 'all'
-        
-        console.log('Getting pending requests with type:', type);
+        const { type = 'all' } = req.query;
         
         let filter = { status: 'PENDING' };
         
@@ -324,18 +311,15 @@ const getPendingRequests = async (req, res, next) => {
             filter.transactionType = { $in: ['REQUEST', 'RETURN_REQUEST'] };
         }
         
-        console.log('Filter being used:', filter);
         
         const transactions = await BookTransaction.find(filter)
             .populate('bookId', 'title author isbn')
             .populate('studentId', 'firstname lastname email')
             .sort({ createdAt: -1 });
-            
-        console.log('Found transactions:', transactions.length);
+
         
         return res.status(200).send(transactions);
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
@@ -352,30 +336,11 @@ const getUserTransactions = async (req, res, next) => {
             
         return res.status(200).send(transactions);
     } catch (error) {
-        console.log(error);
         return res.status(error instanceof InputValidationException ? 400 : 500).send({message: error.message});
     }
 };
 
-// Test endpoint to verify BookTransaction model
-const testTransaction = async (req, res, next) => {
-    try {
-        console.log('Testing BookTransaction model...');
-        
-        // Try to find any existing transactions
-        const existingTransactions = await BookTransaction.find({}).limit(5);
-        console.log('Existing transactions found:', existingTransactions.length);
-        
-        return res.status(200).send({
-            message: 'BookTransaction model is working',
-            existingTransactions: existingTransactions.length,
-            model: 'BookTransaction'
-        });
-    } catch (error) {
-        console.log('Error in testTransaction:', error);
-        return res.status(500).send({message: error.message});
-    }
-};
+
 
 module.exports = { 
     addBook, 
@@ -385,6 +350,5 @@ module.exports = {
     requestReturn, 
     verifyReturn, 
     getPendingRequests, 
-    getUserTransactions,
-    testTransaction 
+    getUserTransactions
 };

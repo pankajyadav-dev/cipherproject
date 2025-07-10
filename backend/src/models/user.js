@@ -76,8 +76,7 @@ UserSchema.statics.findByEmailAndPasswordForAuth = async function(email, passwor
             throw new Error('Invalid email or password');
         }
         return user;
-    } catch (error) {
-        console.log('Error in findByEmailAndPasswordForAuth:', error);  
+    } catch (error) { 
         throw error;
     }
 };
@@ -91,7 +90,6 @@ UserSchema.methods.generateToken = async function() {
         await user.save();
         return token;
     } catch (error) {
-        console.log('Error in generateToken:', error);
         throw error;
     }
 };

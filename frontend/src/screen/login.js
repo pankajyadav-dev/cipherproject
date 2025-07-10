@@ -21,11 +21,9 @@ const LoginScreen = () => {
         
         setLoading(true);
         try {
-            const user = await loginUser(credentials);
-            console.log("Login successful", user);
+            await loginUser(credentials);
             navigator("/");
         } catch (error) {
-            console.error("Login error:", error);
             setError(error.response?.data?.message || "Login failed. Please check your credentials.");
         } finally {
             setLoading(false);

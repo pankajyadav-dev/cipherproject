@@ -51,7 +51,6 @@ const AddBookScreen = () => {
         
         try {
             await addBook(bookDetails);
-            alert('Book added successfully!');
             setBookDetails({
                 isbn: '',
                 title: '',
@@ -61,7 +60,6 @@ const AddBookScreen = () => {
                 price: 1
             });
         } catch (error) {
-            console.error('Error adding book:', error);
             const errorMessage = error.response?.data?.message || 'Failed to add book. Please try again.';
             setError(errorMessage);
         } finally {

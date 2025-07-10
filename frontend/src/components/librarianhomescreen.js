@@ -1,24 +1,7 @@
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
 
 const LibrarianHomeScreen = () => {
-    const [stats, setStats] = useState({
-        totalBooks: 0,
-        totalStudents: 0,
-        pendingRequests: 0,
-        issuedBooks: 0
-    });
 
-    // You can fetch real stats from your API here
-    useEffect(() => {
-        // Mock data - replace with actual API calls
-        setStats({
-            totalBooks: 156,
-            totalStudents: 42,
-            pendingRequests: 8,
-            issuedBooks: 23
-        });
-    }, []);
 
     return (
         <div className="fade-in">
