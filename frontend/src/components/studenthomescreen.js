@@ -27,7 +27,6 @@ const StudentHomeScreen = () => {
                     <i className="fas fa-graduation-cap"></i>
                     Welcome, Student!
                 </h1>
-                <p className="subtitle">Discover and explore our extensive library collection</p>
             </div>
 
             

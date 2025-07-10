@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getPendingRequests, approveBookRequest, verifyReturn } from '../api/user-api';
 
 const AdminPanel = () => {
@@ -82,13 +83,26 @@ const AdminPanel = () => {
     }
 
     return (
-        <section className="app-section">
+        <div className="ui container">
+             <div className="navigation-bar">
+                    <Link to="/" className="nav-brand">
+                        <i className="fas fa-book"></i>
+                        Library
+                    </Link>
+                    <div className="nav-actions">
+                        <Link to="/" className="ui button basic">
+                            <i className="fas fa-arrow-left"></i>
+                            Back to Dashboard
+                        </Link>
+                    </div>
+                </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
                 <h1>Librarian Admin Panel</h1>
                 <button className="ui button" onClick={fetchPendingRequests}>
                     Refresh
                 </button>
             </div>
+        <section className="app-section">
 
             {/* Filter Buttons */}
             <div className="ui three item menu" style={{ marginBottom: '20px' }}>
@@ -206,6 +220,7 @@ const AdminPanel = () => {
                 </div>
             )}
         </section>
+        </div>
     );
 };
 

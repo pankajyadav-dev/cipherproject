@@ -28,7 +28,6 @@ const LibrarianHomeScreen = () => {
                     <i className="fas fa-crown"></i>
                     Welcome, Librarian!
                 </h1>
-                <p className="subtitle">Manage your library with ease and efficiency</p>
             </div>
 
             
