@@ -1,8 +1,7 @@
-import { useState} from 'react';
+import { useState } from 'react';
 import '../App.css';
 import { signupUser } from "../utils/Authutil";
-import {useNavigate} from "react-router-dom";
-
+import { useNavigate, Link } from "react-router-dom";
 
 const SignUpScreen = () => {
     const [credentials, setCredentials] = useState({

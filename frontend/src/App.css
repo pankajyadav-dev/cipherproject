@@ -1,44 +1,299 @@
 @import url(https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css);
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  margin: 0;
+  color: #2c3e50;
+}
 
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+}
+
+/* Main Section Styles */
+.app-section {
+  min-height: 100vh;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  margin: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  animation: slideInUp 0.6s ease-out;
+}
+
+/* Professional Header */
+.professional-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px 0;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.professional-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.professional-header p {
+  margin: 10px 0 0 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Card Enhancements */
+.ui.card {
+  border-radius: 15px !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+  border: none !important;
+  overflow: hidden !important;
+}
+
+.ui.card:hover {
+  transform: translateY(-8px) !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15) !important;
+}
+
+.ui.card .header {
+  font-weight: 600 !important;
+  color: #2c3e50 !important;
+  font-size: 1.3rem !important;
+}
+
+/* Button Enhancements */
+.ui.button {
+  border-radius: 25px !important;
+  font-weight: 500 !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+.ui.primary.button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+}
+
+.ui.primary.button:hover {
+  background: linear-gradient(135deg, #5a6fd8 0%, #6a4190 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4) !important;
+}
+
+.ui.green.button {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%) !important;
+  border: none !important;
+}
+
+.ui.green.button:hover {
+  background: linear-gradient(135deg, #0e8a7e 0%, #32d86a 100%) !important;
+  transform: translateY(-2px) !important;
+}
+
+.ui.orange.button {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  border: none !important;
+}
+
+.ui.red.button {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%) !important;
+  border: none !important;
+}
+
+/* Form Enhancements */
+.ui.form .field > label {
+  font-weight: 500 !important;
+  color: #2c3e50 !important;
+  margin-bottom: 8px !important;
+}
+
+.ui.form input {
+  border-radius: 10px !important;
+  border: 2px solid #e1e8ed !important;
+  padding: 12px 16px !important;
+  transition: all 0.3s ease !important;
+  font-size: 1rem !important;
+}
+
+.ui.form input:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* Table Enhancements */
+.ui.table {
+  border-radius: 15px !important;
+  overflow: hidden !important;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08) !important;
+  border: none !important;
+}
+
+.ui.table thead th {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  padding: 18px 15px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-size: 0.9rem !important;
+}
+
+.ui.table tbody tr {
+  transition: all 0.2s ease !important;
+}
+
+.ui.table tbody tr:hover {
+  background-color: #f8f9fa !important;
+  transform: scale(1.02) !important;
+}
+
+/* Label Enhancements */
+.ui.label {
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+  padding: 8px 16px !important;
+  font-size: 0.9rem !important;
+}
+
+/* Error Message Styling */
+.error-message {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+  animation: shake 0.5s ease-in-out;
+}
+
+/* Success Message Styling */
+.success-message {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 500;
+  box-shadow: 0 5px 15px rgba(17, 153, 142, 0.3);
+}
+
+/* Loading Animation */
+.loading-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 300px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* Statistics Cards */
+.stats-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  transition: all 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.stats-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
 }
 
-@keyframes App-logo-spin {
+.stats-number {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.stats-label {
+  font-size: 1rem;
+  opacity: 0.9;
+  font-weight: 300;
+}
+
+/* Navigation Enhancement */
+.navigation-menu {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animations */
+@keyframes slideInUp {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.app-section{
-  padding: 5vh 10%;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .app-section {
+    margin: 10px;
+    padding: 20px;
+  }
+  
+  .professional-header h1 {
+    font-size: 2rem;
+  }
+  
+  .ui.three.cards > .card {
+    width: 100% !important;
+    margin-bottom: 20px !important;
+  }
 }

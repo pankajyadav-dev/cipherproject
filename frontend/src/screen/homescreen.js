@@ -31,7 +31,7 @@ const HomeScreen = ({usertype}) => {
         } else if (UserType === 'USER') {
             return <StudentHomeScreen />;
         } else{
-            return null;
+            return <div>Loading...</div>;
         }
     };
     return (
